@@ -2095,7 +2095,8 @@ visit the new file."
       (when (/= ret 0)
         (error "`cargo locate-project' returned %s status: %s" ret (buffer-string)))
       (goto-char 0)
-      (let ((output (json-read)))
+      (let* ((json-object-type 'alist)
+             (output (json-read)))
         (cdr (assoc-string "root" output))))))
 
 ;;; Secondary Commands
